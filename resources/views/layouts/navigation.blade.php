@@ -5,7 +5,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Dashboard</a></li>
-            <li><a href="#">Task</a></li>
+            <li><a href="{{url('/tasks')}}">Task</a></li>
             <li><a href="{{url('/categories')}}">Category</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">

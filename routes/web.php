@@ -34,7 +34,8 @@ Route::get('/dashboard', function () {
 //we can write this for resource controller (6 lines = 1 line) 
 Route::resource('/categories', CategoryController::class)->middleware('auth');
 
-//Tasks
-Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth');
+//Tasks route
+// Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth');
+Route::resource('/tasks', TaskController::class)->middleware('auth');
 
 require __DIR__ . '/auth.php';
