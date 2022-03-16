@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('contents')
-<h3>Add New Category</h3>
+<h3>Update Category</h3>
 <hr>
 <form class="form-horizontal" action="{{ url("/categories/{$category->id}") }}" method="post">
     @method("put");

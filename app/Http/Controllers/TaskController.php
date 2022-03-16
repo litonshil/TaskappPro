@@ -76,7 +76,14 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task = Task::find($id);
+        if (!$task) {
+            return redirect('/categories');
+        }
+        $data['category_list'] = Category::where('created_by', Auth::id())->get();
+        $data['task_status'] = TaskStatus::asSelectArray();
+        $data['task'] = $task;
+        return view('tasks.edit', $data);
     }
 
     /**
@@ -88,7 +95,17 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::where('created_by', Auth::id())->find($id);
+        if (!$task) {
+            return redirect('/tasks');
+        }
+        $task->name = $request->name;
+        $task->category_id = $request->category_id;
+        $task->details = $request->details;
+        $task->deadline = $request->deadline;
+        $task->status = $request->status;
+        $task->save();
+        return redirect('/tasks');
     }
 
     /**
@@ -99,6 +116,11 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::where('created_by', Auth::id())->find($id);
+        if (!$task) {
+            return redirect('/tasks');
+        }
+        $task->delete();
+        return redirect('/tasks');
     }
 }

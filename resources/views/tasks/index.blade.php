@@ -7,12 +7,28 @@
 <table class="table table-bordered">
     <tr>
         <td>Name</td>
+        <td>Details</td>
+        <td>Category</td>
+        <td>Deadline</td>
+        <td>Status</td>
         <td>Action</td>
     </tr>
     @foreach ($tasks as $item)
     <tr>
         <td>
             {{ $item->name}}
+        </td>
+        <td>
+            {{ $item->details}}
+        </td>
+        <td>
+            {{ $item->category->name}}
+        </td>
+        <td>
+            {{ $item->deadline}}
+        </td>
+        <td>
+            {{ App\Enums\TaskStatus::getDescription($item->status)}}
         </td>
         <td class="d-flex">
             <a href="{{ url("/tasks/$item->id/edit") }}" class="btn btn-warning btn-sm">Update</a>
